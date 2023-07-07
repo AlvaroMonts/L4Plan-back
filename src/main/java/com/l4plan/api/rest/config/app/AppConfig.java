@@ -11,8 +11,18 @@ import java.util.Properties;
 @Configuration
 public class AppConfig {
 
-    /** Define Beans here */
+    private static String HOST = "smtp.gmail.com";
+    private static int PORT = 587;
+    private static String USERNAME = "l4plan.contact@gmail.com";
+    private static String PASSWORD = "czozdgmpfbfhbdfq";
+    private static String PROPS_TRANSPORT = "mail.transport.protocol";
+    private static String TRANSPORT = "smtp";
+    private static String PROPS_AUTH = "mail.smtp.auth";
+    private static String PROPS_ENABLE =  "mail.smtp.starttls.enable";
+    private static String PROPS_DEBUG = "mail.debug";
+    private static String TRUE = "true";    
 
+    /** Define Beans here */
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
@@ -21,17 +31,17 @@ public class AppConfig {
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
+        mailSender.setHost(HOST);
+        mailSender.setPort(PORT);
 
-        mailSender.setUsername("l4plan.contact@gmail.com");
-        mailSender.setPassword("czozdgmpfbfhbdfq");
+        mailSender.setUsername(USERNAME);
+        mailSender.setPassword(PASSWORD);
 
         Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.debug", "true");
+        props.put(PROPS_TRANSPORT, TRANSPORT);
+        props.put(PROPS_AUTH, TRUE);
+        props.put(PROPS_ENABLE, TRUE);
+        props.put(PROPS_DEBUG, TRUE);
 
         return mailSender;
     }
