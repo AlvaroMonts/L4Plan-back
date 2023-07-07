@@ -79,7 +79,7 @@ public class UserController extends GenericController<User, UserDTO> {
         }
     }
 
-    @PostMapping("/change-psw-logged/{id}")
+    @PutMapping("/change-psw-logged/{id}")
     public ResponseEntity<Object> changePasswordLogged(@PathVariable("id") Long id, @RequestBody ChangePasswordLoggedRequest request) {
         try {
             // User from db with password decoded
