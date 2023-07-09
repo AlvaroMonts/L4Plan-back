@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.l4plan</groupId>
 	<artifactId>api-rest</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>api-rest</name>
 	<description>Spring Boot Api Rest for Look4Plan</description>
 	<properties>

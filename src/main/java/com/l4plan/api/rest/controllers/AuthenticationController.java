@@ -44,9 +44,4 @@ public class AuthenticationController {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
-
-    @PostMapping("/refresh-token")
-    public ResponseEntity<Boolean> refreshToken(@RequestBody AuthenticationRequest request) {
-        return ResponseEntity.ok(false);
-    }
 }

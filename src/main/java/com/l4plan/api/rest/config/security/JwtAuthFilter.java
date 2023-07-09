@@ -24,6 +24,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private static final String TOKEN_AUTH_PREFIX = "Bearer";
+    private static final String HEADER_FAILED_AUTH = "WWW-Authenticate";
 
     private final UserDetailsServiceManagement userDetailsServiceManagement;
 
@@ -61,7 +62,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         } catch(ExpiredJwtException e) {
             response.setStatus(401);
-            response.setHeader("WWW-Authenticate", e.getMessage());
+            response.setHeader(HEADER_FAILED_AUTH, e.getMessage());
         }
     }
 }
