@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,7 +23,12 @@ public abstract class GenericController<T extends Serializable, DTO> {
 
     @GetMapping("/{id}")
     public ResponseEntity<DTO> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(crudService.findById(id));
+        DTO dto = crudService.findById(id);
+        if(dto != null) {
+            return ResponseEntity.ok(dto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
@@ -32,12 +38,22 @@ public abstract class GenericController<T extends Serializable, DTO> {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody DTO dto) {
-        crudService.update(id, dto);
+    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody DTO dto) {
+        try {
+            crudService.update(id, dto);
+            return ResponseEntity.noContent().build();
+        } catch(EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        crudService.delete(id);
+    public ResponseEntity<Object> delete(@PathVariable Long id) {
+        try {
+            crudService.delete(id);
+            return ResponseEntity.noContent().build();
+        } catch(EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

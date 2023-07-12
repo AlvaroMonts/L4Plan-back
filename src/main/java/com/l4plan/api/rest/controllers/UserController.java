@@ -84,14 +84,16 @@ public class UserController extends GenericController<User, UserDTO> {
         try {
             // User from db with password decoded
             UserDTO userDTO = userService.findById(id);
-            if (bcrypt.matches(request.getOldPassword(), userDTO.getPass())) {
-                // Encode the new password and assign it to the user
-                userDTO.setPass(bcrypt.encode(request.getNewPassword()));
-                userService.update(userDTO.getId(), userDTO);
-                return ResponseEntity.noContent().build();
-            } else {
+            if(userDTO == null) {
+                return ResponseEntity.notFound().build();
+            }
+            if (!bcrypt.matches(request.getOldPassword(), userDTO.getPass())) {
                 return ResponseEntity.badRequest().body("La contraseña antigua no es la que se ha indicado");
             }
+            // Encode the new password and assign it to the user
+            userDTO.setPass(bcrypt.encode(request.getNewPassword()));
+            userService.update(userDTO.getId(), userDTO);
+            return ResponseEntity.noContent().build();
         } catch(Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

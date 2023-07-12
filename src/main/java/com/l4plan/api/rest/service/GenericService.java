@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -53,13 +54,22 @@ public abstract class GenericService<T extends Serializable, DTO> {
 
     public void update(Long id, DTO dto) {
         DTO dtoById = findById(id);
-        BeanUtils.copyProperties(dto, dtoById, "id");
-        T entity = ObjectMapperUtils.map(dtoById, entityClass);
-        genericDao.update(entity);
+        if(dtoById != null) {
+            BeanUtils.copyProperties(dto, dtoById, "id");
+            T entity = ObjectMapperUtils.map(dtoById, entityClass);
+            genericDao.update(entity);
+        } else {
+            throw new EntityNotFoundException();
+        }
     }
 
     public void delete(Long id) {
-        genericDao.delete(id);
+        DTO dtoById = findById(id);
+        if(dtoById != null) {
+            genericDao.delete(id);
+        } else {
+            throw new EntityNotFoundException();
+        }
     }
 
     private Object getEntityId(@NotNull Object dto) {

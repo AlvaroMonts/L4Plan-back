@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "50efd000-b8b9-464b-8752-c548f758d152",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26714579",
+		"_collection_link": "https://orange-eclipse-697025.postman.co/workspace/Team-Workspace~081518d8-68ec-4a8b-8141-14ee52adbdc9/collection/26714579-50efd000-b8b9-464b-8752-c548f758d152?action=share&creator=26714579&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "register (create but without token)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"pass\": \"password\",\r\n    \"firstName\": \"prueba\",\r\n    \"role\": \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-user}}/register",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register user updateable (create but without token) Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"alvarito494@gmail.com\",\r\n    \"pass\": \"password\",\r\n    \"firstName\": \"prueba\",\r\n    \"role\": \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-user}}/register",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "no token request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-user}}",
+					"host": [
+						"{{url-user}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-user}}",
+					"host": [
+						"{{url-user}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{url-user}}/23",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findByEmail good email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url-user}}/email/{{email1}}",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"email",
+						"{{email1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findByEmail bad email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-user}}/email/{{email5}}",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"email",
+						"{{email5}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "solicitar password por mail",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"alvarito494@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-user}}/change-psw",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"change-psw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change password logged",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"oldPassword\" : \"hola\",\r\n    \"newPassword\" : \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-user}}/change-psw-logged/23",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"change-psw-logged",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCreatedUser not all data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"UPDATE@gmail.com\",\r\n    \"firstName\": \"UPDATED\",\r\n    \"lastName\": \"UPDATED\",\r\n    \"birthDate\": \"1997-06-20\",\r\n    \"gender\": \"M\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-user}}/data/22",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"data",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleleCreatedUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url-user}}/211",
+					"host": [
+						"{{url-user}}"
+					],
+					"path": [
+						"211"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "email1",
+			"value": "alvaro@gmail.com"
+		},
+		{
+			"key": "email5",
+			"value": "asda"
+		}
+	]
+}

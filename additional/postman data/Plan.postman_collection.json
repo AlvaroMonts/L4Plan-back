@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "aa20d5cb-0551-4417-90c0-ab367f4127ff",
+		"name": "Plan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26714579",
+		"_collection_link": "https://orange-eclipse-697025.postman.co/workspace/Team-Workspace~081518d8-68ec-4a8b-8141-14ee52adbdc9/collection/26714579-aa20d5cb-0551-4417-90c0-ab367f4127ff?action=share&creator=26714579&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "getAll Copy 3",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-plan}}",
+					"host": [
+						"{{url-plan}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByID Copy 3",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-plan}}/10",
+					"host": [
+						"{{url-plan}}"
+					],
+					"path": [
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Copy 3",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"plan\",\r\n    \"description\": \"para cositas\",\r\n    \"userId\": 23\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-plan}}",
+					"host": [
+						"{{url-plan}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Copy 3",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"plan cambiado\",\r\n    \"description\": \"para cositas cambiado\",\r\n    \"userId\": 23\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-plan}}/65",
+					"host": [
+						"{{url-plan}}"
+					],
+					"path": [
+						"65"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Copy 3",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url-plan}}/15",
+					"host": [
+						"{{url-plan}}"
+					],
+					"path": [
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get plan from a user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-plan}}/user/1",
+					"host": [
+						"{{url-plan}}"
+					],
+					"path": [
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
