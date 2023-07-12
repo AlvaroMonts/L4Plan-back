@@ -52,6 +52,9 @@ public class UserController extends GenericController<User, UserDTO> {
     public ResponseEntity<Object> updateUserDataLogged(@PathVariable("id") Long id, @RequestBody UserDataDTO user) {
         try {
             UserDTO userDTO = userService.findById(id);
+            if(userDTO == null) {
+                return ResponseEntity.notFound().build();
+            }
             userDTO.setFirstName(user.getFirstName());
             userDTO.setLastName(user.getLastName());
             userDTO.setBirthDate(user.getBirthDate());
